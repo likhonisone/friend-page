@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>তুমি কি আমার বন্ধু হবে?</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+height:100vh;
+overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(-45deg,#a1c4fd,#c2e9fb,#fbc2eb,#fad0c4);
+background-size:400% 400%;
+animation:bg 12s ease infinite;
+position:relative;
+}
+
+@keyframes bg{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.box{
+text-align:center;
+z-index:2;
+}
+
+h1{
+font-size:26px;
+margin-bottom:20px;
+color:#222;
+}
+
+button{
+padding:14px 30px;
+font-size:20px;
+border:none;
+border-radius:15px;
+cursor:pointer;
+margin:10px;
+font-weight:bold;
+}
+
+#yes{
+background:#28a745;
+color:white;
+}
+
+#no{
+background:#dc3545;
+color:white;
+}
+
+#result{
+margin-top:20px;
+font-size:24px;
+font-weight:bold;
+color:#111;
+background:rgba(255,255,255,0.65);
+padding:10px 15px;
+border-radius:10px;
+min-height:40px;
+display:inline-block;
+position:relative;
+z-index:10;
+}
+
+.heart{
+position:absolute;
+font-size:22px;
+animation:float 6s linear forwards;
+}
+
+@keyframes float{
+0%{transform:translateY(100vh); opacity:0;}
+20%{opacity:1;}
+100%{transform:translateY(-120px); opacity:0;}
+}
+
+.confetti{
+position:absolute;
+font-size:24px;
+animation:fall 3s linear forwards;
+}
+
+@keyframes fall{
+0%{transform:translateY(-100px) rotate(0deg);}
+100%{transform:translateY(110vh) rotate(720deg);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+<h1>🥀🩹অস্তিত্বহীন🥀😅, তুমি কি আমার বন্ধু হবে? 😊</h1>
+
+<button id="yes">হ্যাঁ 💖</button>
+<button id="no">না 😢</button>
+
+<div id="result"></div>
+</div>
+
+<script>
+
+// ❤️ hearts
+function createHeart(){
+let h=document.createElement("div");
+h.className="heart";
+
+const emojis=["❤️","💖","🌸","✨"];
+h.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
+
+h.style.left=Math.random()*100+"vw";
+h.style.fontSize=(18+Math.random()*22)+"px";
+
+document.body.appendChild(h);
+
+setTimeout(()=>h.remove(),6000);
+}
+setInterval(createHeart,500);
+
+
+// ❌ NO button messages
+const noBtn=document.getElementById("no");
+const result=document.getElementById("result");
+
+const msg=[
+"😢 তুমি এত পাষান!Try Again",
+"🥺 একটু তো ভাবো!Try Again",
+"💔 মনটা নরম করো!Try Again",
+"😔 আরেকবার ভেবে দেখো!Try Again",
+"😭 এমন করো না প্লিজ!Try Again",
+"🥀হ্যা না বললে নজর লেগে যাবে ...Try Again",
+
+"😭 ওহ না! তুমি তো একদম হার্টব্রেকার টাইপ!Try Again",
+"🥺 একটু দয়া দেখাও প্লিজ!Try Again",
+"💔 আমি কি এতই খারাপ প্রস্তাব দিলাম?Try Again",
+"😌 তুমি একটু ভাবো, আমি কিন্তু ভালো ছেলে!Try Again",
+"🤨 তুমি কি সত্যি সিরিয়াস?Try Again",
+"💘 একবার হলেও ‘হ্যাঁ’ চাপার সাহস করো!Try Again",
+"😭 আমার হৃদয় ভেঙে যাচ্ছে ধীরে ধীরে...Try Again",
+"🌸 মনটা একটু soft করো না প্লিজ!Try Again",
+
+"😆 না বললে কিন্তু আমি আবার চেষ্টা করবো!Try Again",
+"🤭 এই না বাটনটা তোমার জন্য cursed 😂Try Again",
+"😏 তুমি পালাতে পারবে না 😎Try Again"
+];
+
+noBtn.addEventListener("click", ()=>{
+
+let randomMsg = msg[Math.floor(Math.random()*msg.length)];
+result.innerHTML = randomMsg;
+
+});
+
+
+// ❤️ YES button celebration
+document.getElementById("yes").addEventListener("click", ()=>{
+
+result.innerHTML = "🎉 ইয়েস,আমি জানতাম তুমি হ্যা বলবে! আজ থেকে আমরা বন্ধু 🤝💖";
+
+for(let i=0;i<70;i++){
+let c=document.createElement("div");
+c.className="confetti";
+
+const emojis=["🎉","✨","🎊","💖","🌸"];
+c.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
+
+c.style.left=Math.random()*100+"vw";
+
+document.body.appendChild(c);
+
+setTimeout(()=>c.remove(),3000);
+}
+
+});
+
+</script>
+
+</body>
+</html>
